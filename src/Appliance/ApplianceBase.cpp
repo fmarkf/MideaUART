@@ -170,7 +170,7 @@ void ApplianceBase::m_sendFrame(FrameType type, const FrameData &data) {
 }
 
 void ApplianceBase::m_queueRequest(FrameType type, FrameData data, ResponseHandler onData, Handler onSucess, Handler onError) {
-  LOG_D(TAG, "Enqueuing the request...");
+  LOG_D(TAG, "SOLTEST - Enqueuing the request...");
   this->m_queue.push_back(new Request{std::move(data), std::move(onData), std::move(onSucess), std::move(onError), type});
 }
 
