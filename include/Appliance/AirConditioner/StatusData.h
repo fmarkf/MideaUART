@@ -29,9 +29,9 @@ enum FanMode : uint8_t {
   /// The fan mode is set to Silent
   FAN_SILENT = 20,
   /// The fan mode is set to Low
-  FAN_LOW = 40,
+  FAN_LOW = 30,
   /// The fan mode is set to Medium
-  FAN_MEDIUM = 60,
+  FAN_MEDIUM = 50,
   /// The fan mode is set to High
   FAN_HIGH = 80,
   /// The fan mode is set to Turbo

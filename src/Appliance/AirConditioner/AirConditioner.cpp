@@ -62,12 +62,7 @@ void AirConditioner::control(const Control &control) {
     preset = control.preset.value();
   }
   if (mode != Mode::MODE_OFF) {
-    if (mode == Mode::MODE_AUTO || preset != Preset::PRESET_NONE) {
-      if (this->m_fanMode != FanMode::FAN_AUTO) {
-        hasUpdate = true;
-        status.setFanMode(FanMode::FAN_AUTO);
-      }
-    } else if (control.fanMode.hasUpdate(this->m_fanMode)) {
+    if (control.fanMode.hasUpdate(this->m_fanMode)) {
       hasUpdate = true;
       status.setFanMode(control.fanMode.value());
     }
@@ -220,7 +215,7 @@ ResponseStatus AirConditioner::m_readStatus(FrameData data) {
   setProperty(this->m_indoorTemp, newStatus.getIndoorTemp(), hasUpdate);
   setProperty(this->m_outdoorTemp, newStatus.getOutdoorTemp(), hasUpdate);
   setProperty(this->m_indoorHumidity, newStatus.getHumiditySetpoint(), hasUpdate);
-
+/*
   LOG_D(TAG, "Mode: %x", this->m_mode);
   LOG_D(TAG, "Preset: %x", this->m_preset);
   LOG_D(TAG, "Fan: %x", this->m_fanMode);
@@ -229,7 +224,7 @@ ResponseStatus AirConditioner::m_readStatus(FrameData data) {
   LOG_D(TAG, "Current: %.1f", this->m_indoorTemp);
   LOG_D(TAG, "Outdoor: %.1f", this->m_outdoorTemp);
   LOG_D(TAG, "Humidity: %.1f", this->m_indoorHumidity);
-
+*/
   if (hasUpdate)
     this->sendUpdate();
   return ResponseStatus::RESPONSE_OK;
