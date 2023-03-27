@@ -221,10 +221,10 @@ ResponseStatus AirConditioner::m_readStatus(FrameData data) {
   setProperty(this->m_outdoorTemp, newStatus.getOutdoorTemp(), hasUpdate);
   setProperty(this->m_indoorHumidity, newStatus.getHumiditySetpoint(), hasUpdate);
 
-  LOG_D(TAG, "Mode: %s", this->m_mode);
-  LOG_D(TAG, "Preset: %s", this->m_preset);
-  LOG_D(TAG, "Fan: %s", this->m_fanMode);
-  LOG_D(TAG, "Swing: %s", this->m_swingMode);
+  LOG_D(TAG, "Mode: %x", this->m_mode);
+  LOG_D(TAG, "Preset: %x", this->m_preset);
+  LOG_D(TAG, "Fan: %x", this->m_fanMode);
+  LOG_D(TAG, "Swing: %x", this->m_swingMode);
   LOG_D(TAG, "Target: %.1f", this->m_targetTemp);
   LOG_D(TAG, "Current: %.1f", this->m_indoorTemp);
   LOG_D(TAG, "Outdoor: %.1f", this->m_outdoorTemp);
