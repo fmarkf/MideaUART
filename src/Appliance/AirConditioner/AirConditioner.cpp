@@ -62,12 +62,16 @@ void AirConditioner::control(const Control &control) {
     preset = control.preset.value();
   }
   if (mode != Mode::MODE_OFF) {
+    LOG_D(TAG, "One");
     if (mode == Mode::MODE_AUTO || preset != Preset::PRESET_NONE) {
+      LOG_D(TAG, "TWO");
       if (this->m_fanMode != FanMode::FAN_AUTO) {
+        LOG_D(TAG, "Three");
         hasUpdate = true;
         status.setFanMode(FanMode::FAN_AUTO);
       }
     } else if (control.fanMode.hasUpdate(this->m_fanMode)) {
+      LOG_D(TAG, "Four");
       hasUpdate = true;
       status.setFanMode(control.fanMode.value());
     }
@@ -81,12 +85,14 @@ void AirConditioner::control(const Control &control) {
     status.setTargetTemp(control.targetTemp.value());
   }
   if (hasUpdate) {
+    LOG_D(TAG, "Five");
     this->m_sendControl = true;
     status.setMode(mode);
     status.setPreset(preset);
     status.setBeeper(this->m_beeper);
     status.appendCRC();
     if (isModeChanged && preset != Preset::PRESET_NONE && preset != Preset::PRESET_SLEEP) {
+      LOG_D(TAG, "Six");
       // Last command with preset
       this->m_setStatus(status);
       status.setPreset(Preset::PRESET_NONE);
@@ -220,7 +226,7 @@ ResponseStatus AirConditioner::m_readStatus(FrameData data) {
   setProperty(this->m_indoorTemp, newStatus.getIndoorTemp(), hasUpdate);
   setProperty(this->m_outdoorTemp, newStatus.getOutdoorTemp(), hasUpdate);
   setProperty(this->m_indoorHumidity, newStatus.getHumiditySetpoint(), hasUpdate);
-
+/*
   LOG_D(TAG, "Mode: %x", this->m_mode);
   LOG_D(TAG, "Preset: %x", this->m_preset);
   LOG_D(TAG, "Fan: %x", this->m_fanMode);
@@ -229,7 +235,7 @@ ResponseStatus AirConditioner::m_readStatus(FrameData data) {
   LOG_D(TAG, "Current: %.1f", this->m_indoorTemp);
   LOG_D(TAG, "Outdoor: %.1f", this->m_outdoorTemp);
   LOG_D(TAG, "Humidity: %.1f", this->m_indoorHumidity);
-
+*/
   if (hasUpdate)
     this->sendUpdate();
   return ResponseStatus::RESPONSE_OK;
