@@ -31,7 +31,7 @@ enum FanMode : uint8_t {
   /// The fan mode is set to Low
   FAN_LOW = 40,
   /// The fan mode is set to Medium
-  FAN_MEDIUM = 50,
+  FAN_MEDIUM = 60,
   /// The fan mode is set to High
   FAN_HIGH = 80,
   /// The fan mode is set to Turbo
